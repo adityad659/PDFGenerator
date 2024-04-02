@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <title>Invoice</title>
+ <style>
+  body {
+   margin: 0; /* Remove default body margin for full width */
+  }
+  .invoice-container {
+   border: 1px solid white; /* Main border for the invoice */
+   padding: 10px;
+   width: 100%; /* Full width */
+  }
+    .seller-buyer-info { /* New class for seller/buyer data */
+   padding: 10px 15px 10px 15px; /* Top, left, bottom, right padding */
+  }
+  table {
+   border-collapse: collapse; /* Ensures borders between cells */
+   width: 100%; /* Full width within invoice container */
+  }
+  th, td {
+   border: 1px solid black;
+   padding: 5px; /* Add some padding for better readability */
+  }
+    .item-data { /* New class for item details cells */
+   text-align: center; /* Center align specific cells */
+  }
+ </style>
+</head>
+<body>
+ <div class="invoice-container">
+  <table>
+   <tr>
+    <td colspan="2" class="seller-buyer-info">
+     <b>Seller:</b><br>
+     [[${invoice.seller}]]<br>
+     [[${invoice.sellerAddress}]]<br>
+     GSTIN: [[${invoice.sellerGstin}]]
+    </td>
+    <td colspan="2" class="seller-buyer-info">
+     <b>Buyer:</b><br>
+     [[${invoice.buyer}]]<br>
+     [[${invoice.buyerAddress}]]<br>
+     GSTIN: [[${invoice.buyerGstin}]]
+    </td>
+   </tr>
+    <tr>
+    <th>Item</th>
+    <th>Quantity</th>
+    <th>Rate</th>
+    <th>Amount</th>
+   </tr>
+   <tr th:each="item : ${invoice.items}">
+    <td class="item-data">[[${item.name}]]</td>
+    <td class="item-data">[[${item.quantity}]]</td>
+    <td class="item-data">[[${item.rate}]]</td>
+    <td class="item-data">[[${item.amount}]]</td>
+   </tr>
+  </table>
+ </div>
+</body>
+</html>
